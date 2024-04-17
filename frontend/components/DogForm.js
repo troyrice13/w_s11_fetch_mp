@@ -24,11 +24,13 @@ export default function DogForm() {
           value={values.name}
           onChange={onChange}
           placeholder="Name"
+          aria-label="Dog's name"
         />
         <select
           name="breed"
           value={values.breed}
           onChange={onChange}
+          aria-label="Dog's breed"
         >
           <option value="">---Select Breed---</option>
         </select>
@@ -38,13 +40,14 @@ export default function DogForm() {
             name="adopted"
             checked={values.adopted}
             onChange={onChange}
+            aria-label="Is the dog adopted?"
           />
         </label>
         <div>
           <button type="submit">
             Create Dog
           </button>
-          <button>Reset</button>
+          <button aria-label="Reset form">Reset</button>
         </div>
       </form>
     </div>
