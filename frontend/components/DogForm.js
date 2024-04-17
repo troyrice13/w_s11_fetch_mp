@@ -13,7 +13,6 @@ export default function DogForm() {
       ...values, [name]: type === 'checkbox' ? checked : value
     })
   }
-
   return (
     <div>
       <h2>
