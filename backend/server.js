@@ -17,7 +17,7 @@ let dogs = [
   {
     id: getNextId(),
     name: "Buddy",
-    breed: "Labrador Retriever",
+    breed: "Dalmatian",
     adopted: false
   },
   {
@@ -29,7 +29,7 @@ let dogs = [
   {
     id: getNextId(),
     name: "Bella",
-    breed: "Golden Retriever",
+    breed: "Boxer",
     adopted: true
   },
 ]
