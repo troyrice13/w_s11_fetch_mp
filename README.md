@@ -59,11 +59,13 @@ When your app is running it exposes an API on `http://localhost:3003/api/dogs` w
 
 #### 👉 TASK 3 - Structure your application
 
-Decide what state you need, where to put it, and where perform your fetching.
+Decide what state you need, where to put it, and where perform your fetching
 
 You have many options in regards to structuring your state and your network calls. Have fun architecting!
 
-As a suggestion, when successfully POSTing a new dog, PUTing an existing dog or DELETing an unfortunate dog, **trigger a new GET** to obtain the latest dogs.
+The only requirements are to **use fetch** for all networking, and to **match the functionality of the mock** site
+
+As a suggestion, when successfully POSTing a new dog, PUTing an existing dog or DELETing a dog, **trigger a new GET** to obtain the latest dogs.
 
 #### 👉 TASK 4 - Watch the Solution Video
 
