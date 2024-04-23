@@ -18,7 +18,7 @@
 
 ## ✨ Instructions
 
-Welcome to your Module Project! In this module you learned to use fetch to obtain JSON from a web service using JavaScript. Make sure to code alongside your Guided Project before attempting this challenge!
+Welcome to your Module Project! In this module you learned to obtain JSON from a web service, using the browser's native fetch. Make sure to code alongside your Guided Project before attempting this challenge!
 
 In this project you will work on a Dog Shelter application. This app has two screens: a list of dogs, and a form to create/edit dogs. You will use React Router to toggle between screens, and the native fetch to GET, POST, PUT and DELETE dogs. You will also use a GET request to dynamically populate the options in a dropdown!
 
@@ -27,8 +27,8 @@ In this project you will work on a Dog Shelter application. This app has two scr
 **❗ Preliminary notes about your tasks:**
 
 - Watch the first minutes of the **Solution Video** if you need help getting situated.
-- There is no need to install any extra NPM dependencies. **Do NOT use Axios!**
-- You will make changes to four files - roughly in this order:
+- There is no need to install any extra NPM dependencies. **Do NOT use Axios nor RTK Query!**
+- You will make changes to three files - roughly in this order:
   1. [App.js](./frontend/components/App.js)
   2. [DogsList.js](./frontend/components/DogsList.js)
   3. [DogForm.js](./frontend/components/DogForm.js)
@@ -37,59 +37,35 @@ In this project you will work on a Dog Shelter application. This app has two scr
 
 The general functionality of the app will match the one in [this prototype](https://bloominstituteoftechnology.github.io/W_S11_Fetch_Project).
 
+You can see the network requests playing out in the Network Tab of Chrome Devtools.
+
 #### 👉 TASK 2 - Study the API with Postman
 
-When your app is running it exposes an API on `http://localhost:3003/api/dogs` with the endpoints below. You should test them out in Postman to understand how they work. If you wish to reset the data, you can do it by running `npm run dev` again.
+When your app is running it exposes an API on `http://localhost:3003/api/dogs` with the endpoints below. You should test them out in Postman to understand how they work. The data on the server will reset automatically every time you make changes to your code.
 
 1. GET `/dogs` **returns all dogs from the server**
-    - Expects no parameters nor a request body
 
 2. POST `/dogs` **posts a new dog to the server**
-    - Expects a JSON object with "name" (string), "breed" (string) and "adopted" (boolean) as the body
+    - Request body: expects a JSON object with "name" (string), "breed" (string) and "adopted" (boolean)
 
 3. DELETE `/dogs/:id` **removes a dog from the server**
-    - Expects an actual dog ID at the end of the URL (instead of the ":id")
+    - ID parameter: expects an actual dog ID at the end of the URL
 
 4. PUT `/dogs/:id` **updates the dog by the given ID**
-    - Expects an actual dog ID at the end of the URL
-    - Expects a JSON object with at least one update ("name", "breed", "adopted") as the body
+    - ID parameter: expects an actual dog ID at the end of the URL
+    - Request body: expects a JSON object with at least one update ("name", "breed", "adopted")
 
 5. GET `/dogs/breeds` **returns the breeds to use in the dropdown of the form**
-    - Expects no parameters nor a request body
 
-#### 👉 TASK 3 - Wire RTK Query to the application
+#### 👉 TASK 3 - Structure your application
 
-1. Inside [quotesApi.js](./frontend/state/quotesApi.js) **create a `quotesApi`** containing 4 endpoints: a `getQuotes` query, and `createQuote`, `toggleFake` and `deleteQuote` mutations. Do not flesh these out completely yet. We just want to scaffold and export this API so we can plug it to Redux in the next step.
+Decide what state you need, where to put it, and where perform your fetching.
 
-2. Inside [store.js](./frontend/state/store.js) import the `quotesApi` and **connect** its reducer and its middleware to the existing Redux store.
+You have many options in regards to structuring your state and your network calls. Have fun architecting!
 
-3. Check the Redux tab of Chrome Dev Tools to make sure that RTK Query is working.
+As a suggestion, when successfully POSTing a new dog, PUTing an existing dog or DELETing an unfortunate dog, **trigger a new GET** to obtain the latest dogs.
 
-#### 👉 TASK 4 - Implement the getQuotes query, fetch a list of quotes, render the quotes to the screen
-
-1. Inside [quotesApi.js](./frontend/state/quotesApi.js) build the `getQuotes` endpoint completely. Make sure to set a "Quotes" tag on the data returned by the server.
-
-2. Inside [Quotes.js](./frontend/components/Quotes.js) use the `useGetQuotesQuery` hook exposed by `quotesApi` to GET the quotes from the server and render the retrieved data, instead of the hard-coded quotes found in the module.
-
-#### 👉 TASK 5 - Implement the mutations
-
-1. Inside [quotesApi.js](./frontend/state/quotesApi.js) build the rest of the endpoints, which are all mutations as opposed to queries.
-
-2. Inside [QuoteForm.js](./frontend/components/QuoteForm.js) use the `useCreateQuoteMutation` hook to POST a new quote to the server.
-
-3. Inside [Quotes.js](./frontend/state/Quotes.js) build the functionality needed to DELETE a quote and PUT a change to its `apocryphal` status.
-
-❗ Note that this task and the next ones can be done in parallel.
-
-#### 👉 TASK 6 - Create messages to show that requests are in progress
-
-Inside [Quotes.js](./frontend/components/Quotes.js) and [QuoteForm.js](./frontend/components/QuoteForm.js), render messages to the screen to inform the user that requests are in flight, and test them out by throttling the speed of the requests in the Network Tab in Chrome (by selecting `Fast 3G` or `Slow 3G` from the dropdown). Design and style these messages however you like!
-
-#### 👉 TASK 7 - Display validation problems
-
-Inside [QuoteForm.js](./frontend/components/QuoteForm.js) render an error message to the screen if the new quote does not pass server-side validation. This is the scenario that plays out when a user sends a POST request attaching a "quoteText" (or a "quoteAuthor") shorter than 3 characters in length. The frontend purposely lacks any validation other than preventing the submission of a totally empty form.
-
-#### 👉 TASK 8 - Watch the Solution Video
+#### 👉 TASK 4 - Watch the Solution Video
 
 This step is only required if you need help getting started or get stuck at any point. HAVE FUN!
 
@@ -126,7 +102,7 @@ You can edit the CSS of the project to give it a personal touch so you can add i
 <details>
   <summary>My page does not work! How do I debug it?</summary>
 
-Remember to use console.logs and breakpoints to troubleshoot your code. Do not panic if you see errors in the console, just read them carefully looking for clues. Also keep an eye on the Redux DevTools.
+Remember to use console.logs and breakpoints to troubleshoot your code. Do not panic if you see errors in the console, just read them carefully looking for clues.
 
 </details>
 
